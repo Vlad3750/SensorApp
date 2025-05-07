@@ -8,9 +8,17 @@
         Title="SensorApp" Height="450" Width="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-            <Label HorizontalAlignment="Center">Data:</Label>
+            <Label FontSize="30" Content="Daten:"/>
+            <Rectangle Fill="Black" Height="1"/>
+            <Label Content="Temperatur: " Margin="5" FontSize="18"/>
+            <Label Content="Neigung X: " Margin="5" FontSize="18"/>
+            <Label Content="Neigung Y: " Margin="5" FontSize="18"/>
+            <Label Content="Neigung Z: " Margin="5" FontSize="18"/>
+            <Button Content="Speichern" Margin="5" Padding="10"/>
+            <Button Content="Liste" Margin="5" Padding="10"/>
         </StackPanel>
 
-        <Canvas></Canvas>
+        <Canvas>
+        </Canvas>
     </DockPanel>
 </Window>
