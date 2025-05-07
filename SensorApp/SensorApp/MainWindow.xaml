@@ -8,7 +8,7 @@
         Title="SensorApp" Height="450" Width="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
-            <Label>Data:</Label>
+            <Label HorizontalAlignment="Center">Data:</Label>
         </StackPanel>
 
         <Canvas></Canvas>
