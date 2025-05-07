@@ -22,3 +22,5 @@
 
 5. Klassenstruktur (Klassendiagramm)
     - im Prozess
+
+6. Professor
