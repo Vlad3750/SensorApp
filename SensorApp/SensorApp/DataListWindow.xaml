@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
-        Closing="Window_Closing"
-        Title="DataListWindow" Height="450" Width="800">
-    <ListView Background="Gray">
+        Title="DataListWindow" Height="250" Width="400">
+    <ListView>
         <ListViewItem Content="Hallo"/>
         <ListViewItem Content="Hallo"/>
         <ListViewItem Content="Hallo"/>

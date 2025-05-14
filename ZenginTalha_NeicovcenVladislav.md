@@ -18,9 +18,10 @@
     - Verbindung von Hardware mit Laptop - Beide
 
 4. Skizze
-    - 
+    - <img src="Skizzen/Mainwindow.png" height="250">
+    - <img src="Skizzen/DataListWindow.png" height="250">
 
 5. Klassenstruktur (Klassendiagramm)
-    - ![alt text](image.png)
-    - ![alt text](image-1.png)
+    - <img src="Skizzen/SensorData.png" height="300">
+    - <img src="Skizzen/DataTimeSeries.png" height="200">
     

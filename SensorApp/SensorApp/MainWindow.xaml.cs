@@ -25,7 +25,6 @@ namespace SensorApp
         {
             DataListWindow window = new DataListWindow();
             window.Show();
-            this.Close();
         }
     }
 }

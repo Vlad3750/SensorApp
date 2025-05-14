@@ -24,10 +24,6 @@ namespace SensorApp
             InitializeComponent();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            MainWindow window = new MainWindow();
-            window.Show();
-        }
+        
     }
 }
