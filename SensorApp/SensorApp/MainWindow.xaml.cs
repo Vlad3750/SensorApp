@@ -27,5 +27,10 @@ namespace SensorApp
             DataListWindow window = new DataListWindow();
             window.Show();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

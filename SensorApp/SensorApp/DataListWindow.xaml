@@ -8,8 +8,6 @@
         Title="DataListWindow" Height="250" Width="400">
     <ListView>
         <ListViewItem Content="Hallo"/>
-        <ListViewItem Content="Hallo"/>
-        <ListViewItem Content="Hallo"/>
-        <ListViewItem Content="Hallo"/>
+        
     </ListView>
 </Window>

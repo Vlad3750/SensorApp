@@ -6,14 +6,10 @@ namespace SensorLib
 {
     public class SensorData
     {
-        public double temp { get; set; }
-
-        public double xAxis { get; set; }
-
-        public double yAxis { get; set; }
-
-        public double zAxis { get; set; }
-
+        public double Temp { get; set; }
+        public double XAxis { get; set; }
+        public double YAxis { get; set; }
+        public double ZAxis { get; set; }
         public DateTime TimeStamp { get; set; }
 
         public SensorData()
@@ -21,13 +17,33 @@ namespace SensorLib
 
         }
 
-        public void SerializeToCsv()
+        public SensorData(double temp, double xAxis, double yAxis, double zAxis, DateTime timeStamp)
         {
-
+            Temp = temp;
+            XAxis = xAxis;
+            YAxis = yAxis;
+            ZAxis = zAxis;
+            TimeStamp = timeStamp;
         }
 
-        public void Deserialize()   // <- ReturnTyp to SensorData
+        public string SerializeToCsv()
         {
+            return $"{Temp};{XAxis};{YAxis};{ZAxis};{TimeStamp}";
+        }
+
+        public static SensorData Deserialize(string data)
+        {
+            string[] dataSplit = data.Split(";");
+
+            double temp = double.Parse(dataSplit[0]);
+            double xAxis = double.Parse(dataSplit[1]);
+            double yAxis = double.Parse(dataSplit[2]);
+            double zAxis = double.Parse(dataSplit[3]);
+            DateTime timeStamp = DateTime.Parse(dataSplit[4]);
+
+            SensorData sensorData = new SensorData(temp, xAxis, yAxis, zAxis, timeStamp);
+
+            return sensorData;
 
         }
 
