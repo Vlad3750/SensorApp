@@ -43,11 +43,11 @@
                     Stroke="Black" Fill="Blue" VerticalAlignment="Bottom"/>
 
             <Label Grid.Row="2" Grid.Column="1" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center">X-Achse: 0 °</Label>
+                   VerticalAlignment="Center">X-Achse: 0°</Label>
             <Label Grid.Row="2" Grid.Column="2" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center">Y-Achse: 0 °</Label>
+                   VerticalAlignment="Center">Y-Achse: 0°</Label>
             <Label Grid.Row="2" Grid.Column="3" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center">Z-Achse: 0 °</Label>
+                   VerticalAlignment="Center">Z-Achse: 0°</Label>
         </Grid>
 
     </DockPanel>

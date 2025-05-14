@@ -6,10 +6,10 @@ namespace SensorLib
 {
     public class SensorData
     {
-        public double Temp { get; set; }
-        public double XAxis { get; set; }
-        public double YAxis { get; set; }
-        public double ZAxis { get; set; }
+        public double Temp { get; set; } = 0;
+        public double XAxis { get; set; } = 0;
+        public double YAxis { get; set; } = 0;
+        public double ZAxis { get; set; } = 0;
         public DateTime TimeStamp { get; set; }
 
         public SensorData()
@@ -45,6 +45,11 @@ namespace SensorLib
 
             return sensorData;
 
+        }
+
+        public void ListViewItemShow(ListView list)
+        {
+            list.Items.Add($"Data: {Temp} | {XAxis} | {YAxis} | {ZAxis} | {TimeStamp}");
         }
 
         public void DrawCanvas(Canvas canvas)
