@@ -18,7 +18,9 @@
     - Verbindung von Hardware mit Laptop - Beide
 
 4. Skizze
-    - ![Skizze](image.png)
+    - 
 
 5. Klassenstruktur (Klassendiagramm)
-    - im Prozess
+    - ![alt text](image.png)
+    - ![alt text](image-1.png)
+    
