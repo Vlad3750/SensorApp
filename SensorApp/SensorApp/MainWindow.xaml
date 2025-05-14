@@ -9,7 +9,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="150">
             <Label FontSize="30" Content="Daten:"/>
-            <Rectangle Fill="Black" Height="2"/>
+            <Rectangle Fill="Black" Height="1"/>
             <Label Content="Temperatur: " Margin="5" FontSize="18"/>
             <Label Content="Neigung X: " Margin="5" FontSize="18"/>
             <Label Content="Neigung Y: " Margin="5" FontSize="18"/>
