@@ -15,13 +15,19 @@ using System.Windows.Shapes;
 namespace SensorApp
 {
     /// <summary>
-    /// Interaction logic for DataList.xaml
+    /// Interaction logic for DataListWindow.xaml
     /// </summary>
-    public partial class DataList : Window
+    public partial class DataListWindow : Window
     {
-        public DataList()
+        public DataListWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
         }
     }
 }

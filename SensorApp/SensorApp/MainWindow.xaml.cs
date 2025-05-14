@@ -23,7 +23,9 @@ namespace SensorApp
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DataListWindow window = new DataListWindow();
+            window.Show();
+            this.Close();
         }
     }
 }
