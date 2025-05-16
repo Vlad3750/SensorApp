@@ -23,6 +23,10 @@ namespace SensorApp
         public DataListWindow()
         {
             InitializeComponent();
+
+            SensorData sensorData = new SensorData();
+
+            sensorData.ListViewItemShow(DataListView);
         }
         
     }

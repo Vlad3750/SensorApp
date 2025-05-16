@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
         Title="DataListWindow" Height="250" Width="400">
-    <ListView>
+    <ListView x:Name="DataListView">
         <ListViewItem Content="Hallo"/>
         
     </ListView>
