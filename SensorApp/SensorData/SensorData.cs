@@ -1,6 +1,8 @@
 
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents.Serialization;
+using System.Windows.Shapes;
 
 namespace SensorLib
 {
@@ -47,9 +49,9 @@ namespace SensorLib
 
         }
 
-        public void DrawCanvas(Canvas canvas)
+        public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)
         {
-
+            x_Rectangle.Height += XAxis;
         }
     }
 
