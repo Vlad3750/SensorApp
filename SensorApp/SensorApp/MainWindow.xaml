@@ -42,8 +42,6 @@
             <Rectangle x:Name="Z_Rectangle" Grid.Row="1" Grid.Column="3" Height="0" Width="74" Canvas.Left="148" Canvas.Top="248"
                     Stroke="Black" Fill="Blue" VerticalAlignment="Bottom"/>
 
-            <Slider x:Name="SliderValue" Grid.Column="1" Minimum="0" Maximum="360" ValueChanged="SliderValue_ValueChanged"></Slider>
-            <Label x:Name="LabelValue" Grid.Column="2">Value:</Label>
             
 
             <Label x:Name="X_Label" Grid.Row="2" Grid.Column="1" FontSize="15" HorizontalAlignment="Center"

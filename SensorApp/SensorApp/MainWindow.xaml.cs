@@ -32,8 +32,7 @@ namespace SensorApp
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            X_Label.Content = $"X-Achse: {SliderValue.Value:F2}°";
-            X_Neigung.Content = $"Neigung X: {SliderValue.Value:F2}°";
+            
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
@@ -48,10 +47,6 @@ namespace SensorApp
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
         }
 
-        private void SliderValue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            LabelValue.Content = $"Value: {SliderValue.Value:F2}";
-            X_Rectangle.Height = (SliderValue.Value / 360) * 275;
-        }
+
     }
 }

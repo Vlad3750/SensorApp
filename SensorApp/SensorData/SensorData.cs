@@ -57,6 +57,8 @@ namespace SensorLib
         public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)
         {
             x_Rectangle.Height += XAxis;
+            y_Rectangle.Height += YAxis;
+            z_Rectangle.Height += ZAxis;
         }
     }
 
