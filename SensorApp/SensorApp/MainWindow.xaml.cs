@@ -20,6 +20,8 @@ namespace SensorApp
     {
         private DispatcherTimer timer = new DispatcherTimer();
 
+        SensorData sensordata = new SensorData();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace SensorApp
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            
+            sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
@@ -43,8 +45,8 @@ namespace SensorApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            SensorData sensordata = new SensorData();
-            sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
+            
+            
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +10,36 @@ namespace SensorLib
 {
     internal class DataTimeSeries
     {
-        public List<SensorData> dataList;
 
-        public DataTimeSeries(SensorData sensorData) 
+        public DataTimeSeries() 
         {
-            dataList.Add(sensorData);
+            
         }
 
-        public void SaveToCsv(string filePath)
+        public void SaveToJSON(string filePath, SensorData sensorData)
         {
-
+            using (StreamWriter stream = new StreamWriter(filePath))
+            {
+                stream.WriteLine(sensorData.Serialize());
+            }
         }
 
-        public void LoadFromCsv(string filePath)  // <- ReturnTyp to List<SensorData>
+        public SensorData LoadFromJSON(string filePath)
         {
+            SensorData sensorData = new SensorData();
+            using (StreamReader stream = new StreamReader(filePath))
+            {
+                while (!stream.EndOfStream)
+                {
+                    string? sensorData_string = stream.ReadLine();
+                    if (sensorData_string != null)
+                    {
+                        sensorData = SensorData.Deserialize(filePath);
+                    }
+                }
+            }
 
+            return sensorData;
         }
 
         public void ShowDataList(ListView list)

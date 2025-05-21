@@ -28,7 +28,7 @@ namespace SensorLib
             TimeStamp = timeStamp;
         }
 
-        public string SerializeToCsv()
+        public string Serialize()
         {
             return $"{Temp};{XAxis};{YAxis};{ZAxis};{TimeStamp}";
         }

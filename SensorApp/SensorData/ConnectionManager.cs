@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SensorLib
 {
-    internal class ConnectionManager
+    public class ConnectionManager
     {
+
     }
 }
