@@ -12,4 +12,8 @@
     <ProjectReference Include="..\SensorData\SensorLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Bilder\" />
+  </ItemGroup>
+
 </Project>

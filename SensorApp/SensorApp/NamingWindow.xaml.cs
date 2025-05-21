@@ -11,22 +11,24 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using SensorLib;
 
 namespace SensorApp
 {
     /// <summary>
-    /// Interaction logic for DataListWindow.xaml
+    /// Interaction logic for NamingWindow.xaml
     /// </summary>
-    public partial class DataListWindow : Window
+    public partial class NamingWindow : Window
     {
-        public DataListWindow()
+        public NamingWindow()
         {
             InitializeComponent();
+        }
 
-            SensorData sensorData = new SensorData();
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
 
-            sensorData.ListViewItemShow(DataListView);
+
+            MessageBox.Show("Daten wurden gespeichert.");
         }
     }
 }

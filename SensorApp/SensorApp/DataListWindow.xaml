@@ -6,8 +6,18 @@
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
         Title="DataListWindow" Height="250" Width="400">
-    <ListView x:Name="DataListView">
-        <ListViewItem Content="Hallo"/>
-        
-    </ListView>
+
+    <DockPanel>
+        <DockPanel Margin="6" DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Right" Width="20" Padding="2">
+                <Button.Background>
+                    <ImageBrush ImageSource="Bilder/magnifyingglass.png"/>
+                </Button.Background>
+            </Button>
+            <TextBox Padding="2">Search here ...</TextBox>
+        </DockPanel>
+        <ListView x:Name="DataListView" Margin="6">
+            <ListViewItem Content="Hallo"/>
+        </ListView>
+    </DockPanel>
 </Window>
