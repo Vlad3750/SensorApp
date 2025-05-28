@@ -28,5 +28,20 @@ namespace SensorApp
 
             sensorData.ListViewItemShow(DataListView);
         }
+
+        private void TextBoxSearchBar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxSearchBar.Text = "";
+            TextBoxSearchBar.Foreground = Brushes.Black;
+        }
+
+        private void TextBoxSearchBar_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(TextBoxSearchBar.Text == "")
+            {
+                TextBoxSearchBar.Text = "Search here ...";
+                TextBoxSearchBar.Foreground = Brushes.LightGray;
+            }
+        }
     }
 }

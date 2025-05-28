@@ -28,7 +28,7 @@ namespace SensorLib
 
         public SensorData(string name,  double temp, double xAxis, double yAxis, double zAxis, DateTime timeStamp)
         {
-            Name = Name;
+            Name = name;
             Temp = temp;
             GX = xAxis;
             GY = yAxis;

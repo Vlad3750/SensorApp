@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SensorLib;
 
 namespace SensorApp
 {
@@ -19,14 +20,24 @@ namespace SensorApp
     /// </summary>
     public partial class NamingWindow : Window
     {
-        public NamingWindow()
+        MainWindow mainWindow = new MainWindow();
+        SensorData sensorData = new SensorData();
+        public NamingWindow(MainWindow window)
         {
+            MainWindow mainWindow = window;
             InitializeComponent();
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
+            sensorData.Name = TextBoxName.Text;
+            sensorData.XAxis = Convert.ToDouble(mainWindow.X_Neigung.Content);
+            sensorData.YAxis = Convert.ToDouble(mainWindow.Y_Neigung.Content);
+            sensorData.ZAxis = Convert.ToDouble(mainWindow.Z_Neigung.Content);
+            sensorData.Temp = Convert.ToDouble(mainWindow.Temperatur.Content);
 
+            MessageBox.Show($"{sensorData.Name}|{sensorData.XAxis}|" +
+                $"{sensorData.YAxis}|{sensorData.ZAxis}|{sensorData.Temp}");
 
             MessageBox.Show("Daten wurden gespeichert.");
         }

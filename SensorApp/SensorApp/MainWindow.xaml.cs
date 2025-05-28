@@ -53,7 +53,7 @@ namespace SensorApp
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow();
+            NamingWindow windowName = new NamingWindow(this);
 
             windowName.Show();
         }
