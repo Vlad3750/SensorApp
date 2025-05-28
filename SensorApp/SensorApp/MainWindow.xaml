@@ -5,15 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
-        Title="SensorApp" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="SensorApp" Height="450" Width="800">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="170">
+        <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="160">
             <Label FontSize="30" Content="Daten:"/>
             <Rectangle Fill="Black" Height="1"/>
-            <DockPanel>
-                <Label Content="Temperatur: " Margin="5" FontSize="18"/>
-                <Label DockPanel.Dock="Right" x:Name="Temperatur" Content="0" Margin="5" FontSize="18"/>
-            </DockPanel>
+            <Label x:Name="Temperatur" Content="Temperatur: " Margin="5" FontSize="18"/>
             <Label x:Name="X_Neigung" Content="Neigung X: " Margin="5" FontSize="16"/>
             <Label x:Name="Y_Neigung" Content="Neigung Y: " Margin="5" FontSize="16"/>
             <Label x:Name="Z_Neigung" Content="Neigung Z: " Margin="5" FontSize="16"/>
