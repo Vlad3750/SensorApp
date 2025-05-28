@@ -9,11 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Bilder\magnifyingglass.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Bilder\magnifyingglass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SensorData\SensorLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Bilder\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

@@ -35,6 +35,8 @@ namespace SensorApp
         private void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
+
+            ConnectionManager.Main();
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
