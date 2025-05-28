@@ -27,7 +27,6 @@ namespace SensorApp
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
 
-
             MessageBox.Show("Daten wurden gespeichert.");
         }
     }

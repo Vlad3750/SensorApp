@@ -22,7 +22,7 @@ namespace SensorLib
 
         public SensorData(string name,  double temp, double xAxis, double yAxis, double zAxis, DateTime timeStamp)
         {
-            Name = Name;
+            Name = name;
             Temp = temp;
             XAxis = xAxis;
             YAxis = yAxis;
@@ -32,7 +32,7 @@ namespace SensorLib
 
         public string Serialize()
         {
-            return $"{Name};{Temp};{XAxis};{YAxis};{ZAxis};{TimeStamp}";
+            return $"{Name};{Temp}°C;{XAxis}°;{YAxis}°;{ZAxis}°;{TimeStamp}";
         }
 
         public static SensorData Deserialize(string data)
@@ -54,7 +54,7 @@ namespace SensorLib
 
         public void ListViewItemShow(ListView list)
         {
-            list.Items.Add($"Name: {Name} | Data: {Temp}° , {XAxis}° , {YAxis}° , {ZAxis}° , {TimeStamp}°");
+            list.Items.Add($"Name: {Name} | Data: {Temp}°C , {XAxis}° , {YAxis}° , {ZAxis}° , {TimeStamp}");
         }
 
         public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)

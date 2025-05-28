@@ -9,11 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SensorData\SensorLib.csproj" />
+    <None Remove="Bilder\magnifyingglass.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Bilder\" />
+    <Content Include="Bilder\magnifyingglass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SensorData\SensorLib.csproj" />
   </ItemGroup>
 
 </Project>

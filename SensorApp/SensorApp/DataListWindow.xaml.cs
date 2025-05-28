@@ -28,5 +28,11 @@ namespace SensorApp
 
             sensorData.ListViewItemShow(DataListView);
         }
+
+        private void TextBoxSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBoxSearchBar.Text = "";
+            TextBoxSearchBar.Foreground = null;
+        }
     }
 }

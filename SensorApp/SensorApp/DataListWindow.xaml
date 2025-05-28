@@ -9,12 +9,10 @@
 
     <DockPanel>
         <DockPanel Margin="6" DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" Width="20" Padding="2">
-                <Button.Background>
-                    <ImageBrush ImageSource="Bilder/magnifyingglass.png"/>
-                </Button.Background>
+            <Button DockPanel.Dock="Right" Width="20" Padding="2" Margin="2 0 0 0">
+                <Image Source="Bilder/magnifyingglass.png"/>
             </Button>
-            <TextBox Padding="2">Search here ...</TextBox>
+            <TextBox x:Name="TextBoxSearchBar" Padding="2" Foreground="LightGray" TextChanged="TextBoxSearchBar_TextChanged">Search here ...</TextBox>
         </DockPanel>
         <ListView x:Name="DataListView" Margin="6">
             <ListViewItem Content="Hallo"/>
