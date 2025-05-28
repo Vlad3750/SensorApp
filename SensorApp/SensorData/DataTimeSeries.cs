@@ -34,7 +34,7 @@ namespace SensorLib
                     string? sensorData_string = stream.ReadLine();
                     if (sensorData_string != null)
                     {
-                        sensorData = SensorData.Deserialize(filePath);
+                        // TODO: Ändern
                     }
                 }
             }

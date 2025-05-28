@@ -10,9 +10,12 @@ namespace SensorLib
     {
         public string Name { get; set; } = "";
         public double Temp { get; set; } = 0;
-        public double XAxis { get; set; } = 0;
-        public double YAxis { get; set; } = 0;
-        public double ZAxis { get; set; } = 0;
+        public double AccX { get; set; } = 0;
+        public double AccY { get; set; } = 0;
+        public double AccZ { get; set; } = 0;
+        public double MagX { get; set; } = 0;
+        public double MagY { get; set; } = 0;
+        public double MagZ { get; set; } = 0;
         public DateTime TimeStamp { get; set; }
 
         public SensorData()
@@ -24,44 +27,32 @@ namespace SensorLib
         {
             Name = name;
             Temp = temp;
-            XAxis = xAxis;
-            YAxis = yAxis;
-            ZAxis = zAxis;
+            AccX = xAxis;
+            AccY = yAxis;
+            AccZ = zAxis;
             TimeStamp = timeStamp;
         }
 
         public string Serialize()
         {
-            return $"{Name};{Temp}°C;{XAxis}°;{YAxis}°;{ZAxis}°;{TimeStamp}";
+            return $"{Name};{Temp};{AccX};{AccY};{AccZ};{TimeStamp}";
         }
 
-        public static SensorData Deserialize(string data)
+        public static void Deserialize()
         {
-            string[] dataSplit = data.Split(";");
-
-            string name = dataSplit[0];
-            double temp = double.Parse(dataSplit[1]);
-            double xAxis = double.Parse(dataSplit[2]);
-            double yAxis = double.Parse(dataSplit[3]);
-            double zAxis = double.Parse(dataSplit[4]);
-            DateTime timeStamp = DateTime.Parse(dataSplit[5]);
-
-            SensorData sensorData = new SensorData(name, temp, xAxis, yAxis, zAxis, timeStamp);
-
-            return sensorData;
-
+           // TODO: Klasse machen
         }
 
         public void ListViewItemShow(ListView list)
         {
-            list.Items.Add($"Name: {Name} | Data: {Temp}°C , {XAxis}° , {YAxis}° , {ZAxis}° , {TimeStamp}");
+            list.Items.Add($"Name: {Name} | Data: {Temp} , {AccX} , {AccY} , {AccZ} , {TimeStamp}");
         }
 
         public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)
         {
-            x_Rectangle.Height += XAxis;
-            y_Rectangle.Height += YAxis;
-            z_Rectangle.Height += ZAxis;
+            x_Rectangle.Height += AccX;
+            y_Rectangle.Height += AccY;
+            z_Rectangle.Height += AccZ;
         }
     }
 
