@@ -10,9 +10,6 @@ namespace SensorLib
     {
         public string Name { get; set; } = "";
         public double Temp { get; set; } = 0;
-        public double GX { get; set; } = 0;
-        public double GY { get; set; } = 0;
-        public double GZ { get; set; } = 0;
         public double AccX { get; set; } = 0;
         public double AccY { get; set; } = 0;
         public double AccZ { get; set; } = 0;
@@ -30,15 +27,15 @@ namespace SensorLib
         {
             Name = name;
             Temp = temp;
-            GX = xAxis;
-            GY = yAxis;
-            GZ = zAxis;
+            AccX = xAxis;
+            AccY = yAxis;
+            AccZ = zAxis;
             TimeStamp = timeStamp;
         }
 
         public string Serialize()
         {
-            return $"{Name};{Temp};{GX};{GY};{GZ};{TimeStamp}";
+            return $"{Name};{Temp};{AccX};{AccY};{AccZ};{TimeStamp}";
         }
 
         public static void Deserialize()
@@ -48,14 +45,14 @@ namespace SensorLib
 
         public void ListViewItemShow(ListView list)
         {
-            list.Items.Add($"Name: {Name} | Data: {Temp} , {GX} , {GY} , {GZ} , {TimeStamp}");
+            list.Items.Add($"Name: {Name} | Data: {Temp} , {AccX} , {AccY} , {AccZ} , {TimeStamp}");
         }
 
         public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)
         {
-            x_Rectangle.Height += GX;
-            y_Rectangle.Height += GY;
-            z_Rectangle.Height += GZ;
+            x_Rectangle.Height += AccX;
+            y_Rectangle.Height += AccY;
+            z_Rectangle.Height += AccZ;
         }
     }
 
