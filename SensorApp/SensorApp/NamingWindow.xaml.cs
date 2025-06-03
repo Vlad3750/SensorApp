@@ -34,12 +34,17 @@ namespace SensorApp
             sensorData.AccX = Convert.ToDouble(mainWindow.AccX.Content);
             sensorData.AccY = Convert.ToDouble(mainWindow.AccY.Content);
             sensorData.AccZ = Convert.ToDouble(mainWindow.AccZ.Content);
-            sensorData.Temp = Convert.ToDouble(mainWindow.Temperatur.Content);
+            sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
 
             MessageBox.Show($"{sensorData.Name}|{sensorData.AccX}|" +
                 $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}");
 
             MessageBox.Show("Daten wurden gespeichert.");
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

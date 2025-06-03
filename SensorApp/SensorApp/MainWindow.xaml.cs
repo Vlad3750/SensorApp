@@ -32,7 +32,7 @@ namespace SensorApp
             timer.Start();
         }
 
-        private void Timer_Tick(object? sender, EventArgs e)
+        private async void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
