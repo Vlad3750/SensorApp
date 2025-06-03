@@ -31,10 +31,13 @@ namespace SensorApp
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             sensorData.Name = TextBoxName.Text;
-            sensorData.XAxis = 1;     // <- Get From ConnectionManager
-            sensorData.YAxis = 2;     // <- Get From ConnectionManager
-            sensorData.ZAxis = 3;     // <- Get From ConnectionManager
-            sensorData.Temp = 4;     // <- Get From ConnectionManager
+            sensorData.AccX = Convert.ToDouble(mainWindow.AccX.Content);
+            sensorData.AccY = Convert.ToDouble(mainWindow.AccY.Content);
+            sensorData.AccZ = Convert.ToDouble(mainWindow.AccZ.Content);
+            sensorData.Temp = Convert.ToDouble(mainWindow.Temperatur.Content);
+
+            MessageBox.Show($"{sensorData.Name}|{sensorData.AccX}|" +
+                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}");
 
             MessageBox.Show("Daten wurden gespeichert.");
         }
