@@ -41,10 +41,5 @@ namespace SensorLib
 
             return sensorData;
         }
-
-        public void ShowDataList(ListView list)
-        {
-
-        }
     }
 }

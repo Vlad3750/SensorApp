@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
+using Serilog;
 
 namespace SensorLib
 {
@@ -33,7 +34,8 @@ namespace SensorLib
                 }
                 catch
                 {
-                    MessageBox.Show("Ein Fehler ist aufgetreten.");
+                    MessageBox.Show("Ein Fehler ist im Connection Manager aufgetreten. IP-Adresse falsch?");
+                    Log.Logger.Error("IP-Adresse ist falsch.");
                 }
             }
 
