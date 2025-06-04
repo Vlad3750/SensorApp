@@ -20,6 +20,7 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
+        string searchText;
         public DataListWindow()
         {
             InitializeComponent();
@@ -42,6 +43,11 @@ namespace SensorApp
                 TextBoxSearchBar.Text = "Search here ...";
                 TextBoxSearchBar.Foreground = Brushes.LightGray;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            searchText = TextBoxSearchBar.Text;
         }
     }
 }

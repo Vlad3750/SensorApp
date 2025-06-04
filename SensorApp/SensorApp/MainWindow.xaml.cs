@@ -20,9 +20,13 @@ namespace SensorApp
     {
         IpAdressWindow ipAdressWindow = new IpAdressWindow();
 
+        DataListWindow dataListWindow = new DataListWindow();
+
         private DispatcherTimer timer = new DispatcherTimer();
 
         SensorData sensordata = new SensorData();
+
+
 
         public MainWindow()
         {
@@ -32,18 +36,13 @@ namespace SensorApp
 
             timer.Tick += Timer_Tick;
             timer.Start();
-
-            ipAdressWindow.ShowDialog();
-
-
-
         }
 
         private async void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
-            //ConnectionManager.Main(ipAdressWindow.ipAddress);
+            //ConnectionManager.Main(ipAdressWindow.ipAddress);    <- IP Adressen eingabe richtig stellen
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
@@ -54,7 +53,7 @@ namespace SensorApp
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(this);
+            NamingWindow windowName = new NamingWindow(this, dataListWindow);
 
             windowName.Show();
         }

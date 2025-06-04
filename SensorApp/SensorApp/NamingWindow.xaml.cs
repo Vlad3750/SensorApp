@@ -22,22 +22,26 @@ namespace SensorApp
     {
         MainWindow mainWindow = new MainWindow();
         SensorData sensorData = new SensorData();
-        public NamingWindow(MainWindow window)
+        ListView dataListWindow = new ListView();
+        public NamingWindow(MainWindow window, DataListWindow dataListWindow)
         {
             MainWindow mainWindow = window;
+            DataListWindow dataList = dataListWindow;
             InitializeComponent();
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             sensorData.Name = TextBoxName.Text;
-            sensorData.AccX = Convert.ToDouble(mainWindow.AccX.Content);
-            sensorData.AccY = Convert.ToDouble(mainWindow.AccY.Content);
-            sensorData.AccZ = Convert.ToDouble(mainWindow.AccZ.Content);
-            sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
+            //sensorData.AccX = Convert.ToDouble(mainWindow.AccX.Content);
+            //sensorData.AccY = Convert.ToDouble(mainWindow.AccY.Content);
+            //sensorData.AccZ = Convert.ToDouble(mainWindow.AccZ.Content);
+            //sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
 
-            MessageBox.Show($"{sensorData.Name}|{sensorData.AccX}|" +
-                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}");
+            string listViewStyle = $"{sensorData.Name}|{sensorData.AccX}|" +
+                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}";
+
+            dataListWindow.Items.Add(listViewStyle);
 
             MessageBox.Show("Daten wurden gespeichert.");
         }
