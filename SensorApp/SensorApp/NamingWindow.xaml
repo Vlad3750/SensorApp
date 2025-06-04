@@ -30,7 +30,7 @@
                 Margin="3" Padding="5" IsDefault="True" Click="ButtonOk_Click"/>
         <Button x:Name="ButtonCancel" 
                 Grid.Row="2" Grid.Column="1" 
-                Content="Cancel" 
-                Margin="3" Padding="5" IsCancel="True"/>
+                Content="Abbrechen" 
+                Margin="3" Padding="5" IsCancel="True" Click="ButtonCancel_Click"/>
     </Grid>
 </Window>

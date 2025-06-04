@@ -41,5 +41,10 @@ namespace SensorApp
 
             MessageBox.Show("Daten wurden gespeichert.");
         }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
