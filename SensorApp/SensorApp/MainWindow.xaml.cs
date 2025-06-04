@@ -32,7 +32,7 @@ namespace SensorApp
             timer.Start();
         }
 
-        private void Timer_Tick(object? sender, EventArgs e)
+        private async void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
@@ -43,12 +43,6 @@ namespace SensorApp
         {
             DataListWindow window = new DataListWindow();
             window.Show();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-            
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
