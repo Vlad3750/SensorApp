@@ -19,9 +19,26 @@ namespace SensorApp
     /// </summary>
     public partial class IpAdressWindow : Window
     {
+        public string ipAddress { get; set; }
         public IpAdressWindow()
         {
             InitializeComponent();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void IpAddressTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //TODO: Verzweigung einbauen für falsche IP Adresse
+            ipAddress = IpAddressTextBox.Text;
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

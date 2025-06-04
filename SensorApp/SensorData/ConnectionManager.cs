@@ -19,13 +19,13 @@ namespace SensorLib
         // await ... wartet auf die Antwort
         // EnsureSuccessStatusCode() ... wirft einen Fehler, wenn der Server z.B. 404 zurückgibt
 
-        public static async Task Main()                  
+        public static async Task Main(string ipAddress)                  
         {
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    string url = "http://10.161.8.23/getMeasurements";
+                    string url = $"http://{ipAddress}/getMeasurements";
                     var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
 

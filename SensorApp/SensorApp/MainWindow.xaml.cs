@@ -18,6 +18,8 @@ namespace SensorApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        IpAdressWindow ipAdressWindow = new IpAdressWindow();
+
         private DispatcherTimer timer = new DispatcherTimer();
 
         SensorData sensordata = new SensorData();
@@ -30,13 +32,19 @@ namespace SensorApp
 
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            IpAdressWindow ipAdressWindow = new IpAdressWindow();
+            ipAdressWindow.ShowDialog();
+
+
+
         }
 
         private async void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
-            //ConnectionManager.Main();
+            ConnectionManager.Main();
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)

@@ -14,15 +14,15 @@
         </Grid.RowDefinitions>
         
         <Label Grid.Row="0" Content="IP Adresse:" VerticalAlignment="Center"></Label>
-        <TextBox Grid.Row="1" Margin="5"></TextBox>
+        <TextBox x:Name="IpAddressTextBox" Grid.Row="1" Margin="5" TextChanged="IpAddressTextBox_TextChanged"></TextBox>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="10">Ok</Button>
-            <Button Grid.Column="1" Margin="10">Abbrechen</Button>
+            <Button x:Name="OkButton" IsDefault="True" Margin="10" Click="OkButton_Click">Ok</Button>
+            <Button x:Name="CancelButton" IsCancel="True" Grid.Column="1" Margin="10" Click="CancelButton_Click">Abbrechen</Button>
         </Grid>
     </Grid>
 </Window>
