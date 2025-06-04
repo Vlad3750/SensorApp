@@ -33,7 +33,6 @@ namespace SensorApp
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            IpAdressWindow ipAdressWindow = new IpAdressWindow();
             ipAdressWindow.ShowDialog();
 
 
@@ -44,7 +43,7 @@ namespace SensorApp
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
-            ConnectionManager.Main();
+            //ConnectionManager.Main(ipAdressWindow.ipAddress);
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
