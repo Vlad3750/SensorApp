@@ -31,18 +31,28 @@ namespace SensorApp
         public MainWindow()
         {
             InitializeComponent();
-
+            ipAdressWindow.ShowDialog();
             timer.Interval = TimeSpan.FromMilliseconds(100);
 
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            
+
+            getSensorData();
+
+        }
+
+        private async void getSensorData()
+        {
+            SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
         }
 
         private async void Timer_Tick(object? sender, EventArgs e)
         {
             sensordata.DrawAxie(X_Rectangle, Y_Rectangle, Z_Rectangle);
 
-            //ConnectionManager.Main(ipAdressWindow.ipAddress);    <- IP Adressen eingabe richtig stellen
+            //ConnectionManager.Main(ipAdressWindow.ipAddress);
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)

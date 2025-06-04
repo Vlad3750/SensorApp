@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
 using Serilog;
+using System.ComponentModel;
+using System.Net;
 
 namespace SensorLib
 {
@@ -19,8 +21,10 @@ namespace SensorLib
         // await ... wartet auf die Antwort
         // EnsureSuccessStatusCode() ... wirft einen Fehler, wenn der Server z.B. 404 zurückgibt
 
-        public static async Task Main(string ipAddress)                  
+        public static async Task<SensorData?> Main(string ipAddress)                  
         {
+          
+
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -31,12 +35,17 @@ namespace SensorLib
 
                     string responseBody = await response.Content.ReadAsStringAsync();
                     // var data = JsonSerializer.Deserialize<MyData>(responseBody);
+                    if (responseBody == null)
+                        throw new Exception("Received data is null");
+                    SensorData sensorData = JsonSerializer.Deserialize<SensorData>(responseBody);
+                    return sensorData;
                 }
                 catch
                 {
                     MessageBox.Show("Ein Fehler ist im Connection Manager aufgetreten. IP-Adresse falsch?");
                     Log.Logger.Error("IP-Adresse ist falsch.");
                 }
+                return null;
             }
 
         }

@@ -33,15 +33,13 @@ namespace SensorApp
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             sensorData.Name = TextBoxName.Text;
-            //sensorData.AccX = Convert.ToDouble(mainWindow.AccX.Content);
-            //sensorData.AccY = Convert.ToDouble(mainWindow.AccY.Content);
-            //sensorData.AccZ = Convert.ToDouble(mainWindow.AccZ.Content);
-            //sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
+            sensorData.Acc_X = Convert.ToDouble(mainWindow.AccX.Content);
+            sensorData.Acc_Y = Convert.ToDouble(mainWindow.AccY.Content);
+            sensorData.Acc_Z = Convert.ToDouble(mainWindow.AccZ.Content);
+            sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
 
-            string listViewStyle = $"{sensorData.Name}|{sensorData.AccX}|" +
-                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}";
-
-            dataListWindow.Items.Add(listViewStyle);
+            MessageBox.Show($"{sensorData.Name}|{sensorData.AccX}|" +
+                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}");
 
             MessageBox.Show("Daten wurden gespeichert.");
         }
