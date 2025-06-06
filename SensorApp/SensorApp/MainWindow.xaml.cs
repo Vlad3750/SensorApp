@@ -50,6 +50,8 @@ namespace SensorApp
 
             SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
             X_Rectangle.Height = Math.Abs(sensorData.Acc_X);
+            Y_Rectangle.Height = Math.Abs(sensorData.Acc_Y);
+            Z_Rectangle.Height = Math.Abs(sensorData.Acc_Z);
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
