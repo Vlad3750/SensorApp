@@ -38,8 +38,8 @@ namespace SensorApp
             sensorData.Acc_Z = Convert.ToDouble(mainWindow.AccZ.Content);
             sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
 
-            MessageBox.Show($"{sensorData.Name}|{sensorData.AccX}|" +
-                $"{sensorData.AccY}|{sensorData.AccZ}|{sensorData.Temp}");
+            MessageBox.Show($"{sensorData.Name}|{sensorData.Acc_X}|" +
+                $"{sensorData.Acc_Y}|{sensorData.Acc_Z}|{sensorData.Temp}");
 
             MessageBox.Show("Daten wurden gespeichert.");
         }

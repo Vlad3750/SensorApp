@@ -1,4 +1,5 @@
 
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents.Serialization;
@@ -11,8 +12,87 @@ namespace SensorLib
         public string Name { get; set; } = "";
         public double Temp { get; set; } = 0;
         public double Acc_X { get; set; } = 0;
+        private double acc_X;
+        public double Draw_Acc_X
+        {
+
+            get
+            {   
+                return acc_X;
+            }
+
+            set
+            {
+                if (Acc_X > 200)
+                {
+                    acc_X = 200;
+                }
+                else if (Acc_X < -200)
+                {
+                    acc_X = -200;
+                }
+                else
+                {
+                    acc_X = value;
+                }
+            }
+        }          
+            
         public double Acc_Y { get; set; } = 0;
+        private double acc_Y;
+        public double Draw_Acc_Y
+        {
+
+            get
+            {
+                return acc_Y;
+            }
+
+            set
+            {
+                if (Acc_Y > 200)
+                {
+                    acc_Y = 200;
+                }
+                else if (Acc_Y < -200)
+                {
+                    acc_Y = -200;
+                }
+                else
+                {
+                    acc_Y = value;
+                }
+            }
+        }
+
         public double Acc_Z { get; set; } = 0;
+
+        private double acc_Z;
+        public double Draw_Acc_Z
+        {
+
+            get
+            {
+                return acc_Z;
+            }
+
+            set
+            {
+                if (Acc_Z > 200)
+                {
+                    acc_Z = 200;
+                }
+                else if (Acc_Z < -200)
+                {
+                    acc_Z = -200;
+                }
+                else
+                {
+                    acc_Z = value;
+                }
+            }
+        }
+
         public double MagX { get; set; } = 0;
         public double MagY { get; set; } = 0;
         public double MagZ { get; set; } = 0;
@@ -46,13 +126,6 @@ namespace SensorLib
         public void ListViewItemShow(ListView list)
         {
             list.Items.Add($"Name: {Name} | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp}");
-        }
-
-        public void DrawAxie(Rectangle x_Rectangle, Rectangle y_Rectangle, Rectangle z_Rectangle)
-        {
-            x_Rectangle.Height += Acc_X;
-            y_Rectangle.Height += Acc_Y;
-            z_Rectangle.Height += Acc_Z;
         }
     }
 
