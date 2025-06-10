@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SensorLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,9 +37,16 @@ namespace SensorApp
             ipAddress = IpAddressTextBox.Text;
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+        private async void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (CheckConnection(await ConnectionManager.Main(ipAddress)))
+                this.Close();
+        }
+
+        private bool CheckConnection(SensorData data)
+        {
+            if (data == null) return false;
+            else return true;
         }
     }
 }

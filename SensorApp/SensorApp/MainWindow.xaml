@@ -48,9 +48,10 @@
                 <Rectangle x:Name="X_Rectangle" MaxHeight="200" Height="100" Width="74"
                            Stroke="Black" Fill="Red" />
             </Grid>
-            <Rectangle x:Name="Y_Rectangle" MaxHeight="200" Grid.Row="0" Grid.Column="2" Height="0" Width="74"
+            <Rectangle x:Name="Y_Rectangle" MaxHeight="200" Grid.Row="0" Grid.Column="2" Height="62" Width="74"
                     Stroke="Black" Fill="Green" VerticalAlignment="Center"/>
-            <Rectangle x:Name="Z_Rectangle" MaxHeight="200" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="3" Height="0" Width="74"
+            
+            <Rectangle x:Name="Z_Rectangle" MaxHeight="200" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="3" Height="150" Width="74"
                     Stroke="Black" Fill="Blue" VerticalAlignment="Center"/>
 
             

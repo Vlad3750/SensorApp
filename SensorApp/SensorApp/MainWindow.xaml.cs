@@ -69,6 +69,7 @@ namespace SensorApp
 
         private async void UpdateGUI()
         {
+            if (ipAdressWindow.ipAddress == null) return;
             SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
 
             // X
@@ -96,6 +97,8 @@ namespace SensorApp
             Z_Rectangle.Margin = new Thickness(0, desired_Z, 0, 0);
             Z_Rectangle.Height = Math.Abs(desired_Z);
             AccZ.Content = Math.Round(desired_Z);
+
+            Temp.Content = sensordata.Temp;
         }
 
 

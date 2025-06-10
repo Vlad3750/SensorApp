@@ -17,14 +17,13 @@ namespace SensorLib
         // async ... Damit du await benutzen kannst
         // Task: Gibt an, dass diese Methode asynchron ist (vergleichbar mit void, aber für async)
         // HttpClient ... Erstellt ein Objekt, um HTTP-Anfragen zu machen
-        // GetAsync ... sendet die Anfrage(wie im Browser)
+        // GetAsync ... sendet die Anfrage (wie im Browser)
         // await ... wartet auf die Antwort
         // EnsureSuccessStatusCode() ... wirft einen Fehler, wenn der Server z.B. 404 zurückgibt
 
         public static async Task<SensorData?> Main(string ipAddress)                  
         {
-          
-
+            
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -44,6 +43,7 @@ namespace SensorLib
                 {
                     MessageBox.Show("Ein Fehler ist im Connection Manager aufgetreten. IP-Adresse falsch?");
                     Log.Logger.Error("IP-Adresse ist falsch.");
+
                 }
                 return null;
             }
