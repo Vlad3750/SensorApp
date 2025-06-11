@@ -25,7 +25,7 @@ namespace SensorApp
 
         private DispatcherTimer timer = new DispatcherTimer();
 
-        SensorData sensordata = new SensorData();
+        SensorData sensorData = new SensorData();
 
         // Ticks and frames
         private int tick;
@@ -54,7 +54,7 @@ namespace SensorApp
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(this, dataListWindow);
+            NamingWindow windowName = new NamingWindow(sensorData, dataListWindow);
 
             windowName.Show();
         }
@@ -98,7 +98,7 @@ namespace SensorApp
             Z_Rectangle.Height = Math.Abs(desired_Z);
             AccZ.Content = Math.Round(desired_Z);
 
-            Temp.Content = sensordata.Temp;
+            Temp.Content = sensorData.Temp;
         }
 
 

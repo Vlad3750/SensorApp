@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +24,11 @@ namespace SensorApp
     {
         MainWindow mainWindow = new MainWindow();
         SensorData sensorData = new SensorData();
-        ListView dataListWindow = new ListView();
-        public NamingWindow(MainWindow window, DataListWindow dataListWindow)
+        ListView dataListView;
+        public NamingWindow(SensorData sensorData, DataListWindow dataListWindow)
         {
-            MainWindow mainWindow = window;
-            DataListWindow dataList = dataListWindow;
+            this.sensorData = sensorData;
+            this.dataListView = dataListWindow.DataListView;
             InitializeComponent();
         }
 
@@ -37,9 +39,10 @@ namespace SensorApp
             sensorData.Acc_Y = Convert.ToDouble(mainWindow.AccY.Content);
             sensorData.Acc_Z = Convert.ToDouble(mainWindow.AccZ.Content);
             sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
+            sensorData.TimeStamp = DateTime.Now;
 
-            MessageBox.Show($"{sensorData.Name}|{sensorData.Acc_X}|" +
-                $"{sensorData.Acc_Y}|{sensorData.Acc_Z}|{sensorData.Temp}");
+            dataListView.Items.Add(sensorData);
+            
 
             MessageBox.Show("Daten wurden gespeichert.");
         }

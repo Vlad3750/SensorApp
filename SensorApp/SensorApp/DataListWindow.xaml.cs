@@ -22,23 +22,20 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
-        private ObservableCollection<SensorData> _data;
-        private ICollectionView _collectionView;
-
+        public ObservableCollection<SensorData> data;
+        public ICollectionView collectionView;
         string searchText;
 
         public DataListWindow()
         {
             InitializeComponent();
 
-            _data = new ObservableCollection<SensorData>() {
+            data = new ObservableCollection<SensorData>() {
             new SensorData( ) { Name = "Tempertaure" },
             };
 
-            //sensorData.ListViewItemShow(DataListView);
-
-            _collectionView = CollectionViewSource.GetDefaultView(_data);
-            DataListView.ItemsSource = _collectionView;
+            collectionView = CollectionViewSource.GetDefaultView(data);
+            DataListView.ItemsSource = collectionView;
         }
 
         private void TextBoxSearchBar_GotFocus(object sender, RoutedEventArgs e)
@@ -59,22 +56,18 @@ namespace SensorApp
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             searchText = TextBoxSearchBar.Text;
-        }
-
-        private void TextBoxSearchBar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (_collectionView == null)
+            if (collectionView == null)
                 return;
 
             // Update filter whenever the search text changes
-           _collectionView.Filter = searchText =>
+            collectionView.Filter = searchText =>
             {
                 if (searchText is SensorData sensorData)
                 {
                     return string.IsNullOrEmpty(TextBoxSearchBar.Text) ||
                            sensorData.Name.Contains(TextBoxSearchBar.Text, StringComparison.OrdinalIgnoreCase);
                 }
-                return false; 
+                return false;
             };
         }
     }

@@ -123,9 +123,9 @@ namespace SensorLib
            // TODO: Klasse machen
         }
 
-        public void ListViewItemShow(ListView list)
+        public override string ToString()
         {
-            list.Items.Add($"Name: {Name} | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp}");
+            return $"Name: {Name} | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp}";
         }
     }
 
