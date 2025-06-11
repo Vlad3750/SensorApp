@@ -41,6 +41,7 @@ namespace SensorApp
         public MainWindow()
         {
             InitializeComponent();
+
             ipAdressWindow.ShowDialog();
 
             CompositionTarget.Rendering += Loop;
@@ -69,36 +70,66 @@ namespace SensorApp
 
         private async void UpdateGUI()
         {
-            if (ipAdressWindow.ipAddress == null) return;
+            if (ipAdressWindow.ipAddress == null)
+                return;
             SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
 
             // X
             sensorData.Draw_Acc_X = sensorData.Acc_X;
             desired_X = LerpValue(desired_X, sensorData.Draw_Acc_X, changeFactor);
 
-            X_Rectangle.Margin = new Thickness(0, desired_X, 0, 0);
-            X_Rectangle.Height = Math.Abs(desired_X);
+            X_Rectangle.Margin = new Thickness(0, -desired_X, 0, 0);
+            X_Rectangle.Height = Math.Abs(-desired_X);
             AccX.Content = Math.Round(desired_X);
+
+            if (desired_X < 0)
+            {
+                X_Rectangle.Fill = Brushes.Firebrick;
+            }
+            else
+            {
+                X_Rectangle.Fill = Brushes.Red;
+            }
+
 
 
             // Y
             sensorData.Draw_Acc_Y = sensorData.Acc_Y;
             desired_Y = LerpValue(desired_Y, sensorData.Draw_Acc_Y, changeFactor);
 
-            Y_Rectangle.Margin = new Thickness(0, desired_Y, 0, 0);
-            Y_Rectangle.Height = Math.Abs(desired_Y);
+            Y_Rectangle.Margin = new Thickness(0, -desired_Y, 0, 0);
+            Y_Rectangle.Height = Math.Abs(-desired_Y);
             AccY.Content = Math.Round(desired_Y);
 
+            if (desired_Y < 0)
+            {
+                Y_Rectangle.Fill = Brushes.Green;
+            }
+            else
+            {
+                Y_Rectangle.Fill = Brushes.LimeGreen;
+            }
 
             // Z
             sensorData.Draw_Acc_Z = sensorData.Acc_Z;
             desired_Z = LerpValue(desired_Z, sensorData.Draw_Acc_Z, changeFactor);
 
-            Z_Rectangle.Margin = new Thickness(0, desired_Z, 0, 0);
-            Z_Rectangle.Height = Math.Abs(desired_Z);
+            Z_Rectangle.Margin = new Thickness(0, -desired_Z, 0, 0);
+            Z_Rectangle.Height = Math.Abs(-desired_Z);
             AccZ.Content = Math.Round(desired_Z);
 
-            Temp.Content = sensordata.Temp;
+            if (desired_Z < 0)
+            {
+                Z_Rectangle.Fill = Brushes.MidnightBlue;
+            }
+            else
+            {
+                Z_Rectangle.Fill = Brushes.Blue;
+            }
+
+
+            // Temperature
+            Temp.Content = sensorData.Temp;
         }
 
 
