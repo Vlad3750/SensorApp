@@ -54,6 +54,11 @@ namespace SensorLib
             y_Rectangle.Height += Acc_Y;
             z_Rectangle.Height += Acc_Z;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}: | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp} |";
+        }
     }
 
 }
