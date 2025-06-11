@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -16,30 +17,22 @@ namespace SensorLib
             
         }
 
-        public void SaveToJSON(string filePath, SensorData sensorData)
+        public static string SaveToJSON(SensorData sensorData)
         {
-            using (StreamWriter stream = new StreamWriter(filePath))
+            var options = new JsonSerializerOptions
             {
-                stream.WriteLine(sensorData.Serialize());
-            }
+                WriteIndented = true // für schön formatiertes JSON
+            };
+
+            return JsonSerializer.Serialize(sensorData, options);
         }
 
-        public SensorData LoadFromJSON(string filePath)
+        public static async void LoadFromJSON(string filePath)
         {
-            SensorData sensorData = new SensorData();
-            using (StreamReader stream = new StreamReader(filePath))
+            using (FileStream stream = new FileStream(filePath, FileMode.Open))
             {
-                while (!stream.EndOfStream)
-                {
-                    string? sensorData_string = stream.ReadLine();
-                    if (sensorData_string != null)
-                    {
-                        // TODO: Ändern
-                    }
-                }
+               SensorData sensorData = await JsonSerializer.DeserializeAsync<SensorData>(stream);
             }
-
-            return sensorData;
         }
     }
 }

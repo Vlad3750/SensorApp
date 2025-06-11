@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
-        Title="SensorApp" Height="490" Width="800">
+        Title="SensorApp" Height="500" Width="800">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="LightGray" Width="160">
             <Label FontSize="30" Content="Daten:" FontWeight="Bold"/>
@@ -13,12 +13,17 @@
 
             <Label Content="Temperatur (°C): " Margin="5" FontSize="14"/>
             <Label x:Name="Temp" Content="" Background="DarkGray" Margin="5" FontSize="16"/>
+            
             <Label Content="Beschleunigung X: " Margin="5" FontSize="14"/>
             <Label x:Name="AccX" Content="" Background="DarkGray" Margin="5" FontSize="16"/>
+            
             <Label Content="Beschleunigung Y: " Margin="5" FontSize="14"/>
             <Label x:Name="AccY" Content="" Background="DarkGray" Margin="5" FontSize="16"/>
+            
             <Label Content="Beschleunigung Z: " Margin="5" FontSize="14"/>
             <Label x:Name="AccZ" Content="" Background="DarkGray" Margin="5" FontSize="16"/>
+            
+            
             <Button x:Name="SaveButton" Content="Speichern" Margin="5" Padding="10" Click="SaveButton_Click"/>
             <Button x:Name="ListButton" Content="Liste" Margin="5" Padding="10" Click="ListButton_Click"/>
         </StackPanel>
@@ -35,26 +40,28 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <Rectangle x:Name="X_Rectangle" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Height="0" Width="74"
-                    Stroke="Black" Fill="Red" VerticalAlignment="Center"/>
-            <Rectangle x:Name="Y_Rectangle" Grid.Row="1" Grid.Column="2" Height="0" Width="74"
+
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
+                <Rectangle x:Name="X_Rectangle" MaxHeight="200" Height="100" Width="74"
+                           Stroke="Black" Fill="Red" />
+            </Grid>
+            <Rectangle x:Name="Y_Rectangle" MaxHeight="200" Grid.Row="0" Grid.Column="2" Height="62" Width="74"
                     Stroke="Black" Fill="Green" VerticalAlignment="Center"/>
-            <Rectangle x:Name="Z_Rectangle" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="3" Height="30" Width="74"
+            
+            <Rectangle x:Name="Z_Rectangle" MaxHeight="200" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="3" Height="150" Width="74"
                     Stroke="Black" Fill="Blue" VerticalAlignment="Center"/>
 
             
 
             <Label x:Name="XLabel" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center" Content="X-Beschleunigung: 0"></Label>
+                   VerticalAlignment="Center" Content="X-Beschleunigung"></Label>
             <Label x:Name="YLabel" Grid.Row="2" Grid.Column="2" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center" Content="Y-Beschleunigung: 0"></Label>
+                   VerticalAlignment="Center" Content="Y-Beschleunigung"></Label>
             <Label x:Name="ZLabel" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="3" FontSize="15" HorizontalAlignment="Center"
-                   VerticalAlignment="Center" Content="Z-Beschleunigung: 0"></Label>
+                   VerticalAlignment="Center" Content="Z-Beschleunigung"></Label>
         </Grid>
 
     </DockPanel>
