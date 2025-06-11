@@ -28,12 +28,11 @@ namespace SensorLib
             {
                 try
                 {
-                    string url = $"http://{ipAddress}/getMeasurements";
+                    string url = $"http://{ipAddress}";
                     var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
 
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    // var data = JsonSerializer.Deserialize<MyData>(responseBody);
                     if (responseBody == null)
                         throw new Exception("Received data is null");
                     SensorData sensorData = JsonSerializer.Deserialize<SensorData>(responseBody);
