@@ -22,27 +22,28 @@ namespace SensorApp
     /// </summary>
     public partial class NamingWindow : Window
     {
-        MainWindow mainWindow = new MainWindow();
         SensorData sensorData = new SensorData();
         ListView dataListView;
+
         public NamingWindow(SensorData sensorData, DataListWindow dataListWindow)
         {
             this.sensorData = sensorData;
             this.dataListView = dataListWindow.DataListView;
             InitializeComponent();
+            LabelTemp.Content = sensorData.Temp;
+            LabelX.Content = sensorData.Acc_X;
+            LabelY.Content = sensorData.Acc_Y;
+            LabelZ.Content = sensorData.Acc_Z;
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             sensorData.Name = TextBoxName.Text;
-            sensorData.Acc_X = Convert.ToDouble(mainWindow.AccX.Content);
-            sensorData.Acc_Y = Convert.ToDouble(mainWindow.AccY.Content);
-            sensorData.Acc_Z = Convert.ToDouble(mainWindow.AccZ.Content);
-            sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
             sensorData.TimeStamp = DateTime.Now;
 
             dataListView.Items.Add(sensorData);
-            
+
+            DataTimeSeries.SaveToJSON(sensorData);
 
             MessageBox.Show("Daten wurden gespeichert.");
         }

@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace SensorLib
 {
-    internal class DataTimeSeries
+    public class DataTimeSeries
     {
 
         public DataTimeSeries() 

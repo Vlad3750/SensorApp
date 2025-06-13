@@ -125,7 +125,7 @@ namespace SensorLib
 
         public override string ToString()
         {
-            return $"Name: {Name} | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp}";
+            return $"{Name}: | Data: {Temp} , {Acc_X} , {Acc_Y} , {Acc_Z} , {TimeStamp}";
         }
     }
 
