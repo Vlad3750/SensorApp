@@ -43,7 +43,7 @@ namespace SensorApp
 
             dataListView.Items.Add(sensorData);
 
-            DataTimeSeries.SaveToJSON(sensorData);
+            DataTimeSeries.SaveToCsv(sensorData, "data.txt");
 
             MessageBox.Show("Daten wurden gespeichert.");
         }

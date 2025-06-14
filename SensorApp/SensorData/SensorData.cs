@@ -1,5 +1,7 @@
 
 using System.Diagnostics;
+using System.IO;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents.Serialization;
@@ -113,14 +115,26 @@ namespace SensorLib
             TimeStamp = timeStamp;
         }
 
+
         public string Serialize()
         {
             return $"{Name};{Temp};{Acc_X};{Acc_Y};{Acc_Z};{TimeStamp}";
         }
 
-        public static void Deserialize()
+        public static SensorData Deserialize(string dataString)
         {
-           // TODO: Klasse machen
+            string[] dataSplit = dataString.Split(';');
+
+            string name = dataSplit[0];
+            double temp = double.Parse(dataSplit[1]);
+            double accx = double.Parse(dataSplit[2]);
+            double accy = double.Parse(dataSplit[3]);
+            double accz = double.Parse(dataSplit[4]);
+            DateTime timestamp = DateTime.Parse(dataSplit[5]);
+
+            SensorData sensorData = new SensorData(name, temp, accx, accy, accz, timestamp);
+
+            return sensorData;
         }
 
         public override string ToString()

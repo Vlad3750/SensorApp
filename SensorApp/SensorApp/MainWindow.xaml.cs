@@ -42,13 +42,11 @@ namespace SensorApp
         {
             InitializeComponent();
 
+
+
             ipAdressWindow.ShowDialog();
 
-            //foreach (string sensorString in )                                     -> load file
-            //{
-            //    sensorData = DataTimeSeries.LoadFromJSON(sensorString);           -> get data from file
-            //    dataListWindow.DataListView.Items.Add(sensorData);                -> add them to the listView
-            //}
+            DataTimeSeries.LoadFromCsv("data.txt", dataListWindow.DataListView);
 
             CompositionTarget.Rendering += Loop;
         }

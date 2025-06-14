@@ -17,22 +17,32 @@ namespace SensorLib
             
         }
 
-        public static string SaveToJSON(SensorData sensorData)
+        public static void SaveToCsv(SensorData sensorData, string filePath)
         {
-            var options = new JsonSerializerOptions
+            using (StreamWriter sw = new StreamWriter(filePath))
             {
-                WriteIndented = true // für schön formatiertes JSON
-            };
-
-            return JsonSerializer.Serialize(sensorData, options);
+                sw.WriteLine(sensorData.Serialize());
+            }
         }
 
-        public static async void LoadFromJSON(string filePath)
+        public static ListView LoadFromCsv(string filePath, ListView listView)
         {
-            using (FileStream stream = new FileStream(filePath, FileMode.Open))
+            SensorData sensorData = new SensorData();
+
+            using (StreamReader stream = new StreamReader(filePath))
             {
-               SensorData sensorData = await JsonSerializer.DeserializeAsync<SensorData>(stream);
+                while (!stream.EndOfStream)
+                {
+                    string? dataString = stream.ReadLine();
+                    if (dataString != null)
+                    {
+                        sensorData = SensorData.Deserialize(dataString);
+                        listView.Items.Add(sensorData);
+                    }
+                }
             }
+
+            return listView;
         }
     }
 }
