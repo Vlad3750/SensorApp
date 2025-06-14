@@ -46,7 +46,7 @@ namespace SensorApp
 
             ipAdressWindow.ShowDialog();
 
-            DataTimeSeries.LoadFromCsv("data.txt", dataListWindow.DataListView);
+            DataTimeSeries.LoadFromCsv("data.txt", dataListWindow.data);
 
             CompositionTarget.Rendering += Loop;
         }

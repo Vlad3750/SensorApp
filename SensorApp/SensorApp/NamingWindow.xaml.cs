@@ -23,12 +23,12 @@ namespace SensorApp
     public partial class NamingWindow : Window
     {
         SensorData sensorData = new SensorData();
-        ListView dataListView;
+        ObservableCollection<SensorData> oCollection;
 
         public NamingWindow(SensorData sensorData, DataListWindow dataListWindow)
         {
             this.sensorData = sensorData;
-            this.dataListView = dataListWindow.DataListView;
+            this.oCollection = dataListWindow.data;
             InitializeComponent();
             LabelTemp.Content = sensorData.Temp;
             LabelX.Content = sensorData.Acc_X;
@@ -41,11 +41,14 @@ namespace SensorApp
             sensorData.Name = TextBoxName.Text;
             sensorData.TimeStamp = DateTime.Now;
 
-            dataListView.Items.Add(sensorData);
+            oCollection.Add(sensorData);
 
-            DataTimeSeries.SaveToCsv(sensorData, "data.txt");
+            DataTimeSeries series = new DataTimeSeries();
+
+            series.SaveToCsv("data.txt");
 
             MessageBox.Show("Daten wurden gespeichert.");
+            this.Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

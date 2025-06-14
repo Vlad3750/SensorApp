@@ -22,17 +22,13 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
-        public ObservableCollection<SensorData> data;
+        public ObservableCollection<SensorData> data = new ObservableCollection<SensorData>();
         public ICollectionView collectionView;
         string searchText;
 
         public DataListWindow()
         {
             InitializeComponent();
-
-            data = new ObservableCollection<SensorData>() {
-            new SensorData( ) { Name = "Tempertaure" },
-            };
 
             collectionView = CollectionViewSource.GetDefaultView(data);
             DataListView.ItemsSource = collectionView;

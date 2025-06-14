@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,15 +19,20 @@ namespace SensorLib
             
         }
 
-        public static void SaveToCsv(SensorData sensorData, string filePath)
+        public ObservableCollection<SensorData> sensorList = new ObservableCollection<SensorData>();
+
+        public void SaveToCsv(string filePath)
         {
             using (StreamWriter sw = new StreamWriter(filePath))
             {
-                sw.WriteLine(sensorData.Serialize());
+                foreach(SensorData sensor in sensorList)
+                {
+                    sw.WriteLine(sensor.Serialize());
+                }
             }
         }
 
-        public static ListView LoadFromCsv(string filePath, ListView listView)
+        public static ObservableCollection<SensorData> LoadFromCsv(string filePath, ObservableCollection<SensorData> listView)
         {
             SensorData sensorData = new SensorData();
 
@@ -37,7 +44,7 @@ namespace SensorLib
                     if (dataString != null)
                     {
                         sensorData = SensorData.Deserialize(dataString);
-                        listView.Items.Add(sensorData);
+                        listView.Add(sensorData);
                     }
                 }
             }
