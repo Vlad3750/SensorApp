@@ -39,7 +39,6 @@ namespace SensorApp
 
         private void IpAddressTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO: Verzweigung einbauen für falsche IP Adresse
             ipAddress = IpAddressTextBox.Text;
         }
 

@@ -19,7 +19,7 @@ namespace SensorLib
             
         }
 
-        public ObservableCollection<SensorData> sensorList = new ObservableCollection<SensorData>();
+        public List<SensorData> sensorList = new List<SensorData>();
 
         public void SaveToCsv(string filePath)
         {
@@ -32,10 +32,8 @@ namespace SensorLib
             }
         }
 
-        public static ObservableCollection<SensorData> LoadFromCsv(string filePath, ObservableCollection<SensorData> listView)
+        public ObservableCollection<SensorData> LoadFromCsv(string filePath, ObservableCollection<SensorData> oCollection)
         {
-            SensorData sensorData = new SensorData();
-
             using (StreamReader stream = new StreamReader(filePath))
             {
                 while (!stream.EndOfStream)
@@ -43,13 +41,13 @@ namespace SensorLib
                     string? dataString = stream.ReadLine();
                     if (dataString != null)
                     {
-                        sensorData = SensorData.Deserialize(dataString);
-                        listView.Add(sensorData);
+                        sensorList.Add(SensorData.Deserialize(dataString));
+                        oCollection.Add(SensorData.Deserialize(dataString));
                     }
                 }
             }
 
-            return listView;
+            return oCollection;
         }
     }
 }

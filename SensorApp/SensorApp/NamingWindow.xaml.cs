@@ -24,16 +24,22 @@ namespace SensorApp
     {
         SensorData sensorData = new SensorData();
         ObservableCollection<SensorData> oCollection;
+        ICollectionView cView;
+        ListView dataListView;
+        DataTimeSeries timeSeries = new DataTimeSeries();
 
-        public NamingWindow(SensorData sensorData, DataListWindow dataListWindow)
+        public NamingWindow(SensorData sensorData, DataListWindow dataListWindow, DataTimeSeries timeSeries)
         {
-            this.sensorData = sensorData;
-            this.oCollection = dataListWindow.data;
             InitializeComponent();
+            this.sensorData = sensorData;
+            oCollection = dataListWindow.oCollection;
+            this.cView = dataListWindow.collectionView;
+            dataListView = dataListWindow.DataListView;
             LabelTemp.Content = sensorData.Temp;
             LabelX.Content = sensorData.Acc_X;
             LabelY.Content = sensorData.Acc_Y;
             LabelZ.Content = sensorData.Acc_Z;
+            this.timeSeries = timeSeries;
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
@@ -42,10 +48,11 @@ namespace SensorApp
             sensorData.TimeStamp = DateTime.Now;
 
             oCollection.Add(sensorData);
+            cView = CollectionViewSource.GetDefaultView(oCollection);
+            dataListView.ItemsSource = cView;
 
-            DataTimeSeries series = new DataTimeSeries();
 
-            series.SaveToCsv("data.txt");
+            timeSeries.sensorList.Add(sensorData);
 
             MessageBox.Show("Daten wurden gespeichert.");
             this.Close();

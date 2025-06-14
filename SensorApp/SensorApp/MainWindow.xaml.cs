@@ -21,11 +21,13 @@ namespace SensorApp
     {
         IpAdressWindow ipAdressWindow = new IpAdressWindow();
 
-        DataListWindow dataListWindow = new DataListWindow();
+        DataListWindow dataListWindow;
 
         private DispatcherTimer timer = new DispatcherTimer();
 
         SensorData sensorData = new SensorData();
+
+        DataTimeSeries timeSeries = new DataTimeSeries();
 
         // Ticks and frames
         private int tick;
@@ -42,24 +44,29 @@ namespace SensorApp
         {
             InitializeComponent();
 
-
-
             ipAdressWindow.ShowDialog();
 
-            DataTimeSeries.LoadFromCsv("data.txt", dataListWindow.data);
+            dataListWindow = new DataListWindow(timeSeries.LoadFromCsv("data.txt", dataListWindow.oCollection));
 
             CompositionTarget.Rendering += Loop;
+
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            timeSeries.SaveToCsv("data.txt");
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-            DataListWindow window = new DataListWindow();
+            DataListWindow window = new DataListWindow(dataListWindow.oCollection);
             window.Show();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(sensorData, dataListWindow);
+            NamingWindow windowName = new NamingWindow(sensorData, dataListWindow, timeSeries);
 
             windowName.Show();
         }

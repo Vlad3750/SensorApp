@@ -22,15 +22,15 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
-        public ObservableCollection<SensorData> data = new ObservableCollection<SensorData>();
+        public ObservableCollection<SensorData> oCollection = new ObservableCollection<SensorData>();
         public ICollectionView collectionView;
         string searchText;
 
-        public DataListWindow()
+        public DataListWindow(ObservableCollection<SensorData> oCollection)
         {
             InitializeComponent();
 
-            collectionView = CollectionViewSource.GetDefaultView(data);
+            collectionView = CollectionViewSource.GetDefaultView(oCollection);
             DataListView.ItemsSource = collectionView;
         }
 
@@ -52,19 +52,26 @@ namespace SensorApp
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             searchText = TextBoxSearchBar.Text;
-            if (collectionView == null)
-                return;
-
-            // Update filter whenever the search text changes
-            collectionView.Filter = searchText =>
+            if(searchText != null)
             {
-                if (searchText is SensorData sensorData)
+                if (collectionView == null)
+                    return;
+
+                // Update filter whenever the search text changes
+                collectionView.Filter = searchText =>
                 {
-                    return string.IsNullOrEmpty(TextBoxSearchBar.Text) ||
-                           sensorData.Name.Contains(TextBoxSearchBar.Text, StringComparison.OrdinalIgnoreCase);
-                }
-                return false;
-            };
+                    if (searchText is SensorData sensorData)
+                    {
+                        return string.IsNullOrEmpty(TextBoxSearchBar.Text) ||
+                               sensorData.Name.Contains(TextBoxSearchBar.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
+            }
+            else
+            {
+                collectionView.Filter = null;
+            }
         }
     }
 }
