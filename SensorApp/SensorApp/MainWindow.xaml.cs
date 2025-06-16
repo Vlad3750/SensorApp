@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,9 +24,11 @@ namespace SensorApp
 
         DataListWindow dataListWindow;
 
+        ObservableCollection<SensorData> oCollection = new ObservableCollection<SensorData>();
+
         private DispatcherTimer timer = new DispatcherTimer();
 
-        SensorData sensorData = new SensorData();
+        public SensorData sensorData = new SensorData();
 
         DataTimeSeries timeSeries = new DataTimeSeries();
 
@@ -46,7 +49,7 @@ namespace SensorApp
 
             ipAdressWindow.ShowDialog();
 
-            dataListWindow = new DataListWindow(timeSeries.LoadFromCsv("data.txt", dataListWindow.oCollection));
+            timeSeries.LoadFromCsv("data.txt", oCollection);
 
             CompositionTarget.Rendering += Loop;
 
@@ -60,13 +63,13 @@ namespace SensorApp
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-            DataListWindow window = new DataListWindow(dataListWindow.oCollection);
+            DataListWindow window = new DataListWindow(oCollection);
             window.Show();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(sensorData, dataListWindow, timeSeries);
+            NamingWindow windowName = new NamingWindow(this, dataListWindow, timeSeries);
 
             windowName.Show();
         }

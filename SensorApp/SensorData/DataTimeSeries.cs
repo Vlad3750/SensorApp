@@ -32,7 +32,7 @@ namespace SensorLib
             }
         }
 
-        public ObservableCollection<SensorData> LoadFromCsv(string filePath, ObservableCollection<SensorData> oCollection)
+        public void LoadFromCsv(string filePath, ObservableCollection<SensorData> oCollection)
         {
             using (StreamReader stream = new StreamReader(filePath))
             {
@@ -46,8 +46,6 @@ namespace SensorLib
                     }
                 }
             }
-
-            return oCollection;
         }
     }
 }

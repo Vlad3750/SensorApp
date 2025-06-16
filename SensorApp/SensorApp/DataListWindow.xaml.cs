@@ -22,7 +22,6 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
-        public ObservableCollection<SensorData> oCollection = new ObservableCollection<SensorData>();
         public ICollectionView collectionView;
         string searchText;
 
