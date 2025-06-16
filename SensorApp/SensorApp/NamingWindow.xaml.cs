@@ -30,7 +30,7 @@ namespace SensorApp
         public NamingWindow(MainWindow window, ObservableCollection<SensorData> dataCollection)
         {
             InitializeComponent();
-            this.sensorData = window.sensorData;
+            sensorData = window.sensorData;
             LabelTemp.Content = sensorData.Temp; 
             LabelX.Content = sensorData.Acc_X;
             LabelY.Content = sensorData.Acc_Y;

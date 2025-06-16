@@ -30,7 +30,10 @@ namespace SensorApp
 
         private void IpAdressWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (ipAddress == null)
+            {
+                Application.Current.Shutdown();
+            }
             Log.Logger.Information("Ip-Adress not provided. Application closed.");
         }
 
@@ -40,16 +43,14 @@ namespace SensorApp
             Log.Logger.Information("Ip-Adress not provided. Application closed.");
         }
 
-        private void IpAddressTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ipAddress = IpAddressTextBox.Text;
-        }
-
         private async void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckConnection(await ConnectionManager.Main(ipAddress)))
-                this.Close();
+            ipAddress = IpAddressTextBox.Text;
             Log.Logger.Information("Ip-Adress provided. Application started. Sensor is measuring.");
+            if (CheckConnection(await ConnectionManager.Main(ipAddress)))
+            {
+                this.Close();
+            }
         }
 
         private bool CheckConnection(SensorData data)

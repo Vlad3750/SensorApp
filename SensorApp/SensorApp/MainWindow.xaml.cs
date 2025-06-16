@@ -36,9 +36,9 @@ namespace SensorApp
         private const int tickDelay = 3;
 
         // Sizes
-        private double desired_X;
-        private double desired_Y;
-        private double desired_Z;
+        public double desired_X;
+        public double desired_Y;
+        public double desired_Z;
 
         private const double changeFactor = 0.1;
 
@@ -88,7 +88,7 @@ namespace SensorApp
         {
             if (ipAdressWindow.ipAddress == null)
                 return;
-            SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
+            sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
 
             // X
             sensorData.Draw_Acc_X = sensorData.Acc_X;
