@@ -21,7 +21,7 @@ namespace SensorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        IpAdressWindow ipAdressWindow = new IpAdressWindow();
+        IpAdressWindow ipAdressWindow;
 
         DataListWindow dataListWindow;
 
@@ -46,13 +46,14 @@ namespace SensorApp
         {
             InitializeComponent();
 
-            ipAdressWindow.ShowDialog();
-
             oCollection = DataTimeSeries.LoadFromCsv("data.txt");
 
             CompositionTarget.Rendering += Loop;
 
             this.Closing += MainWindow_Closing;
+
+            ipAdressWindow = new IpAdressWindow();
+            ipAdressWindow.ShowDialog();
         }
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)

@@ -45,9 +45,10 @@ namespace SensorApp
 
             oCollection.Add(sensorData);
 
-            MessageBox.Show("Daten wurden gespeichert.");
+            
             Log.Logger.Information($"{sensorData.Name} is saved in data.txt");
             this.Close();
+            MessageBox.Show("Daten wurden gespeichert.");
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

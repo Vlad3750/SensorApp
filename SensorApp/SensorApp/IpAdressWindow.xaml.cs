@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Serilog;
+using System.IO;
 
 namespace SensorApp
 {
@@ -26,6 +27,18 @@ namespace SensorApp
         {
             InitializeComponent();
             this.Closing += IpAdressWindow_Closing;
+
+            if (!File.Exists("lastIP.txt")) return;
+            using (StreamReader stream = new StreamReader("lastIP.txt"))
+            {
+                while (!stream.EndOfStream)
+                {
+                    string? dataString = stream.ReadLine();
+                    IpAddressTextBox.Text = dataString;
+                    IpAddressTextBox.Focus();
+                    IpAddressTextBox.SelectAll();
+                }
+            }
         }
 
         private void IpAdressWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
@@ -49,6 +62,11 @@ namespace SensorApp
             Log.Logger.Information("Ip-Adress provided. Application started. Sensor is measuring.");
             if (CheckConnection(await ConnectionManager.Main(ipAddress)))
             {
+                using (StreamWriter sw = new StreamWriter("lastIP.txt"))
+                {
+                    sw.WriteLine(ipAddress);
+                }
+                Log.Logger.Information($"Saving into data.txt ...");
                 this.Close();
             }
         }
