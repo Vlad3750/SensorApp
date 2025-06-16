@@ -5,6 +5,8 @@ Mitglieder: Vladislav Neicovcen, Talha Zengin
 Kurzbeschreibung: Mit einem Raspberry PI werden Daten (Temperatur, Beschleunigung, etc.) gelesen und dargestellt.
 
 Collage:
+<img src="Skizzen/Collage1.png">
+<img src="Skizzen/Collage2.png">
 
 
 
