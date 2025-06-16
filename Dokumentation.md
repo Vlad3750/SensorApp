@@ -56,16 +56,18 @@ Collage:
 
 **Kurzbeschreibung:** Mit einem Raspberry PI werden Daten (Temperatur, Beschleunigung, etc.) gelesen und dargestellt.
 
-**Skizzen:** <img src="Skizzen/DataListWindow.png">
-<img src="Skizzen/DataTimeSeries.png">
+**Skizzen:** 
+<img src="Skizzen/DataListWindow.png">
 <img src="Skizzen/Mainwindow.png">
-<img src="Skizzen/SensorData.png">
 
 
 
 ## Pflichtenheft
 
 **Klassendiagramme:**
+<img src="Skizzen/SensorData.png">
+<img src="Skizzen/DataTimeSeries.png">
+<img src="Skizzen/ConnectionManager.png">
 
 
 
