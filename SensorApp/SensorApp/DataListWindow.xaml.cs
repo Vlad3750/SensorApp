@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -20,14 +23,17 @@ namespace SensorApp
     /// </summary>
     public partial class DataListWindow : Window
     {
+        public ICollectionView collectionView;
+        private ObservableCollection<SensorData> _dataCollection;
         string searchText;
-        public DataListWindow()
+
+        public DataListWindow(ObservableCollection<SensorData> oCollection)
         {
             InitializeComponent();
 
-            SensorData sensorData = new SensorData();
-
-            sensorData.ListViewItemShow(DataListView);
+            _dataCollection = oCollection;
+            collectionView = CollectionViewSource.GetDefaultView(_dataCollection);
+            DataListView.ItemsSource = collectionView;
         }
 
         private void TextBoxSearchBar_GotFocus(object sender, RoutedEventArgs e)
@@ -45,9 +51,36 @@ namespace SensorApp
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             searchText = TextBoxSearchBar.Text;
+            if(searchText != "Search here ...")
+            {
+                if (collectionView == null)
+                    return;
+
+                // Update filter whenever the search text changes
+                collectionView.Filter = searchText =>
+                {
+                    if (searchText is SensorData sensorData)
+                    {
+                        return string.IsNullOrEmpty(TextBoxSearchBar.Text) ||
+                               sensorData.Name.Contains(TextBoxSearchBar.Text, StringComparison.OrdinalIgnoreCase);
+                    }
+                    return false;
+                };
+                Log.Logger.Information($"Searching for {searchText} in listView.");
+            }
+            else if (string.IsNullOrEmpty(searchText))
+            {
+                collectionView.Filter = null;
+                collectionView = CollectionViewSource.GetDefaultView(_dataCollection);
+                DataListView.ItemsSource = collectionView;
+            }
+            else
+            {
+                collectionView.Filter = null;
+            }
         }
     }
 }

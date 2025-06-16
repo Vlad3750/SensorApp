@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -21,20 +23,22 @@ namespace SensorApp
     {
         IpAdressWindow ipAdressWindow = new IpAdressWindow();
 
-        DataListWindow dataListWindow = new DataListWindow();
+        DataListWindow dataListWindow;
+
+        ObservableCollection<SensorData> oCollection = new ObservableCollection<SensorData>();
 
         private DispatcherTimer timer = new DispatcherTimer();
 
-        SensorData sensordata = new SensorData();
+        public SensorData sensorData = new SensorData();
 
         // Ticks and frames
         private int tick;
         private const int tickDelay = 3;
 
         // Sizes
-        private double desired_X;
-        private double desired_Y;
-        private double desired_Z;
+        public double desired_X;
+        public double desired_Y;
+        public double desired_Z;
 
         private const double changeFactor = 0.1;
 
@@ -44,20 +48,32 @@ namespace SensorApp
 
             ipAdressWindow.ShowDialog();
 
+            oCollection = DataTimeSeries.LoadFromCsv("data.txt");
+
             CompositionTarget.Rendering += Loop;
+
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DataTimeSeries.SaveToCsv("data.txt", oCollection);
+            Application.Current.Shutdown();
+            Log.Logger.Information("Application closed.");
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-            DataListWindow window = new DataListWindow();
-            window.Show();
+            DataListWindow listWindow = new DataListWindow(oCollection);
+            listWindow.Show();
+            Log.Logger.Information("Saved Datalist is showing.");
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(this, dataListWindow);
-
+            NamingWindow windowName = new NamingWindow(this, oCollection);
             windowName.Show();
+            Log.Logger.Information("Naming Data recieved.");
         }
 
         private void Loop(object sender, EventArgs e)
@@ -72,7 +88,7 @@ namespace SensorApp
         {
             if (ipAdressWindow.ipAddress == null)
                 return;
-            SensorData sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
+            sensorData = await ConnectionManager.Main(ipAdressWindow.ipAddress);
 
             // X
             sensorData.Draw_Acc_X = sensorData.Acc_X;

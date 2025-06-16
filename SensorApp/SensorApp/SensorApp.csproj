@@ -6,9 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Bilder\Logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Bilder\Logo.ico" />
     <None Remove="Bilder\magnifyingglass.png" />
   </ItemGroup>
 
@@ -26,6 +28,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SensorData\SensorLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Bilder\Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

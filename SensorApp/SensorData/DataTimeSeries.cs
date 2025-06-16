@@ -1,38 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Serilog;
 
 namespace SensorLib
 {
-    internal class DataTimeSeries
+    public class DataTimeSeries
     {
-
-        public DataTimeSeries() 
+        public static void SaveToCsv(string filePath, ObservableCollection<SensorData> sensorList)
         {
-            
-        }
-
-        public static string SaveToJSON(SensorData sensorData)
-        {
-            var options = new JsonSerializerOptions
+            using (StreamWriter sw = new StreamWriter(filePath))
             {
-                WriteIndented = true // für schön formatiertes JSON
-            };
-
-            return JsonSerializer.Serialize(sensorData, options);
-        }
-
-        public static async void LoadFromJSON(string filePath)
-        {
-            using (FileStream stream = new FileStream(filePath, FileMode.Open))
-            {
-               SensorData sensorData = await JsonSerializer.DeserializeAsync<SensorData>(stream);
+                foreach(SensorData sensor in sensorList)
+                {
+                    sw.WriteLine(sensor.Serialize());
+                }
             }
+            Log.Logger.Information($"Saving into data.txt ...");
+        }
+
+        public static ObservableCollection<SensorData> LoadFromCsv(string filePath)
+        {
+            var oCollection = new ObservableCollection<SensorData>();
+
+            using (StreamReader stream = new StreamReader(filePath))
+            {
+                while (!stream.EndOfStream)
+                {
+                    string? dataString = stream.ReadLine();
+                    if (dataString != null)
+                    {
+                        oCollection.Add(SensorData.Deserialize(dataString));
+                    }
+                }
+            }
+            Log.Logger.Information($"Loading collected data into listView ...");
+
+            return oCollection;
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -20,33 +24,37 @@ namespace SensorApp
     /// </summary>
     public partial class NamingWindow : Window
     {
-        MainWindow mainWindow = new MainWindow();
-        SensorData sensorData = new SensorData();
-        ListView dataListWindow = new ListView();
-        public NamingWindow(MainWindow window, DataListWindow dataListWindow)
+        SensorData sensorData;
+        ObservableCollection<SensorData> oCollection;
+
+        public NamingWindow(MainWindow window, ObservableCollection<SensorData> dataCollection)
         {
-            MainWindow mainWindow = window;
-            DataListWindow dataList = dataListWindow;
             InitializeComponent();
+            sensorData = window.sensorData;
+            LabelTemp.Content = sensorData.Temp; 
+            LabelX.Content = sensorData.Acc_X;
+            LabelY.Content = sensorData.Acc_Y;
+            LabelZ.Content = sensorData.Acc_Z;
+            oCollection = dataCollection;
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             sensorData.Name = TextBoxName.Text;
-            sensorData.Acc_X = Convert.ToDouble(mainWindow.AccX.Content);
-            sensorData.Acc_Y = Convert.ToDouble(mainWindow.AccY.Content);
-            sensorData.Acc_Z = Convert.ToDouble(mainWindow.AccZ.Content);
-            sensorData.Temp = Convert.ToDouble(mainWindow.Temp.Content);
+            sensorData.TimeStamp = DateTime.Now;
 
-            MessageBox.Show($"{sensorData.Name}|{sensorData.Acc_X}|" +
-                $"{sensorData.Acc_Y}|{sensorData.Acc_Z}|{sensorData.Temp}");
+            oCollection.Add(sensorData);
 
             MessageBox.Show("Daten wurden gespeichert.");
+            Log.Logger.Information($"{sensorData.Name} is saved in data.txt");
+            this.Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Log.Logger.Information($"User decided not to save recieved data.");
         }
     }
 }
+ 

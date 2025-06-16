@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         
         <Label Grid.Row="0" Content="IP Adresse:" VerticalAlignment="Center"></Label>
-        <TextBox x:Name="IpAddressTextBox" Grid.Row="1" Margin="5" TextChanged="IpAddressTextBox_TextChanged"></TextBox>
+        <TextBox x:Name="IpAddressTextBox" Grid.Row="1" Margin="5"></TextBox>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

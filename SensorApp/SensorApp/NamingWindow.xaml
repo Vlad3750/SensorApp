@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SensorApp"
         mc:Ignorable="d"
-        Title="Name:" Height="150" Width="300">
+        Title="Name:" Height="230" Width="320">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -14,22 +14,46 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Daten:      X:       Y:       Z:       Temp:"
-               Grid.ColumnSpan="2"
-               VerticalAlignment="Center"/>
+        <Label Content="Daten:"
+            VerticalAlignment="Center" Background="DarkGray" Grid.ColumnSpan="2"/>
 
-        <TextBox x:Name="TextBoxName" Margin="5" 
-                 VerticalContentAlignment="Center"
-                 Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Label Content="Name:" Grid.Row="1"/>
+        <TextBox x:Name="TextBoxName" Margin="2" 
+            VerticalContentAlignment="Center"
+            Grid.Column="1" Grid.Row="1"/>
 
-        <Button x:Name="ButtonOk" Grid.Row="2" 
+        <Label Content="Temp:" Grid.Row="2"/>
+        <Label x:Name="LabelTemp" Margin="2" 
+            VerticalContentAlignment="Center"
+            Grid.Column="1" Grid.Row="2" Background="LightGray"/>
+
+        <Label Content="X:" Grid.Row="3"/>
+        <Label x:Name="LabelX" Margin="2" 
+            VerticalContentAlignment="Center"
+            Grid.Column="1" Grid.Row="3" Background="LightGray"/>
+
+        <Label Content="Y:" Grid.Row="4"/>
+        <Label x:Name="LabelY" Margin="2" 
+            VerticalContentAlignment="Center"
+            Grid.Column="1" Grid.Row="4" Background="LightGray"/>
+
+        <Label Content="Z:" Grid.Row="5"/>
+        <Label x:Name="LabelZ" Margin="2" 
+            VerticalContentAlignment="Center"
+            Grid.Column="1" Grid.Row="5" Background="LightGray"/>
+        
+        <Button x:Name="ButtonOk" Grid.Row="6" 
                 Content="Ok"
                 Margin="3" Padding="5" IsDefault="True" Click="ButtonOk_Click"/>
         <Button x:Name="ButtonCancel" 
-                Grid.Row="2" Grid.Column="1" 
+                Grid.Row="6" Grid.Column="1" 
                 Content="Abbrechen" 
                 Margin="3" Padding="5" IsCancel="True" Click="ButtonCancel_Click"/>
     </Grid>
