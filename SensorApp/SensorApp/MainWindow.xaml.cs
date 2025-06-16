@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -58,18 +59,21 @@ namespace SensorApp
         {
             DataTimeSeries.SaveToCsv("data.txt", oCollection);
             Application.Current.Shutdown();
+            Log.Logger.Information("Application closed.");
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
             DataListWindow listWindow = new DataListWindow(oCollection);
             listWindow.Show();
+            Log.Logger.Information("Saved Datalist is showing.");
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             NamingWindow windowName = new NamingWindow(this, oCollection);
             windowName.Show();
+            Log.Logger.Information("Naming Data recieved.");
         }
 
         private void Loop(object sender, EventArgs e)

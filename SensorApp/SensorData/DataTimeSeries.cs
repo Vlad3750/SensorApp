@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Serilog;
 
 namespace SensorLib
 {
@@ -22,6 +23,7 @@ namespace SensorLib
                     sw.WriteLine(sensor.Serialize());
                 }
             }
+            Log.Logger.Information($"Saving into data.txt ...");
         }
 
         public static ObservableCollection<SensorData> LoadFromCsv(string filePath)
@@ -39,6 +41,7 @@ namespace SensorLib
                     }
                 }
             }
+            Log.Logger.Information($"Loading collected data into listView ...");
 
             return oCollection;
         }

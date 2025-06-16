@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -68,6 +69,7 @@ namespace SensorApp
                     }
                     return false;
                 };
+                Log.Logger.Information($"Searching for {searchText} in listView.");
             }
             else if (string.IsNullOrEmpty(searchText))
             {

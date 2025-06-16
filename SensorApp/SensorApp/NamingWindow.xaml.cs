@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SensorLib;
+using Serilog;
 
 namespace SensorApp
 {
@@ -45,13 +46,14 @@ namespace SensorApp
             oCollection.Add(sensorData);
 
             MessageBox.Show("Daten wurden gespeichert.");
-
+            Log.Logger.Information($"{sensorData.Name} is saved in data.txt");
             this.Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Log.Logger.Information($"User decided not to save recieved data.");
         }
     }
 }

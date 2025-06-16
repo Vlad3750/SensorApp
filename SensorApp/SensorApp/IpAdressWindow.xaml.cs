@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Serilog;
 
 namespace SensorApp
 {
@@ -30,11 +31,13 @@ namespace SensorApp
         private void IpAdressWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+            Log.Logger.Information("Ip-Adress not provided. Application closed.");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+            Log.Logger.Information("Ip-Adress not provided. Application closed.");
         }
 
         private void IpAddressTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -46,6 +49,7 @@ namespace SensorApp
         {
             if (CheckConnection(await ConnectionManager.Main(ipAddress)))
                 this.Close();
+            Log.Logger.Information("Ip-Adress provided. Application started. Sensor is measuring.");
         }
 
         private bool CheckConnection(SensorData data)

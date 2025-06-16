@@ -28,7 +28,7 @@ namespace SensorLib
             {
                 try
                 {
-                    string url = $"http://{ipAddress}";
+                    string url = $"http://{ipAddress}/getMeasurements";
                     var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
 
