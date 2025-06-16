@@ -30,8 +30,6 @@ namespace SensorApp
 
         public SensorData sensorData = new SensorData();
 
-        DataTimeSeries timeSeries = new DataTimeSeries();
-
         // Ticks and frames
         private int tick;
         private const int tickDelay = 3;
@@ -49,7 +47,7 @@ namespace SensorApp
 
             ipAdressWindow.ShowDialog();
 
-            timeSeries.LoadFromCsv("data.txt", oCollection);
+            oCollection = DataTimeSeries.LoadFromCsv("data.txt");
 
             CompositionTarget.Rendering += Loop;
 
@@ -58,19 +56,19 @@ namespace SensorApp
 
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            timeSeries.SaveToCsv("data.txt");
+            DataTimeSeries.SaveToCsv("data.txt", oCollection);
+            Application.Current.Shutdown();
         }
 
         private void ListButton_Click(object sender, RoutedEventArgs e)
         {
-            DataListWindow window = new DataListWindow(oCollection);
-            window.Show();
+            DataListWindow listWindow = new DataListWindow(oCollection);
+            listWindow.Show();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            NamingWindow windowName = new NamingWindow(this, dataListWindow, timeSeries);
-
+            NamingWindow windowName = new NamingWindow(this, oCollection);
             windowName.Show();
         }
 

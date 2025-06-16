@@ -9,7 +9,7 @@
 
     <DockPanel>
         <DockPanel Margin="6" DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" Width="20" Padding="2" Margin="2 0 0 0" Click="SearchButton_Click">
+            <Button DockPanel.Dock="Right" Width="20" Padding="2" Margin="2 0 0 0" Click="SearchButton_Click" IsDefault="True">
                 <Image Source="Bilder/magnifyingglass.png"/>
             </Button>
             <TextBox x:Name="TextBoxSearchBar" GotFocus="TextBoxSearchBar_GotFocus" LostFocus="TextBoxSearchBar_LostFocus" Padding="2" Foreground="LightGray" Text="Search here ..."></TextBox>

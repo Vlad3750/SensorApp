@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,21 +23,18 @@ namespace SensorApp
     /// </summary>
     public partial class NamingWindow : Window
     {
-        SensorData sensorData = new SensorData();
-        ObservableCollection<SensorData> oCollection = new ObservableCollection<SensorData>();
-        DataTimeSeries timeSeries = new DataTimeSeries();
-        DataListWindow dataListWindow;
+        SensorData sensorData;
+        ObservableCollection<SensorData> oCollection;
 
-        public NamingWindow(MainWindow window, DataListWindow dataListWindow, DataTimeSeries timeSeries)
+        public NamingWindow(MainWindow window, ObservableCollection<SensorData> dataCollection)
         {
             InitializeComponent();
             this.sensorData = window.sensorData;
-            LabelTemp.Content = sensorData.Temp;
+            LabelTemp.Content = sensorData.Temp; 
             LabelX.Content = sensorData.Acc_X;
             LabelY.Content = sensorData.Acc_Y;
             LabelZ.Content = sensorData.Acc_Z;
-            this.timeSeries = timeSeries;
-            this.dataListWindow = dataListWindow;
+            oCollection = dataCollection;
         }
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
@@ -46,11 +44,8 @@ namespace SensorApp
 
             oCollection.Add(sensorData);
 
-            dataListWindow = new DataListWindow(oCollection);
-
-            timeSeries.sensorList.Add(sensorData);
-
             MessageBox.Show("Daten wurden gespeichert.");
+
             this.Close();
         }
 
@@ -60,3 +55,4 @@ namespace SensorApp
         }
     }
 }
+ 

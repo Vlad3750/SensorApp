@@ -13,15 +13,7 @@ namespace SensorLib
 {
     public class DataTimeSeries
     {
-
-        public DataTimeSeries() 
-        {
-            
-        }
-
-        public List<SensorData> sensorList = new List<SensorData>();
-
-        public void SaveToCsv(string filePath)
+        public static void SaveToCsv(string filePath, ObservableCollection<SensorData> sensorList)
         {
             using (StreamWriter sw = new StreamWriter(filePath))
             {
@@ -32,8 +24,10 @@ namespace SensorLib
             }
         }
 
-        public void LoadFromCsv(string filePath, ObservableCollection<SensorData> oCollection)
+        public static ObservableCollection<SensorData> LoadFromCsv(string filePath)
         {
+            var oCollection = new ObservableCollection<SensorData>();
+
             using (StreamReader stream = new StreamReader(filePath))
             {
                 while (!stream.EndOfStream)
@@ -41,11 +35,12 @@ namespace SensorLib
                     string? dataString = stream.ReadLine();
                     if (dataString != null)
                     {
-                        sensorList.Add(SensorData.Deserialize(dataString));
                         oCollection.Add(SensorData.Deserialize(dataString));
                     }
                 }
             }
+
+            return oCollection;
         }
     }
 }

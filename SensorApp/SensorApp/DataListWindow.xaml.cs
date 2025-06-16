@@ -23,13 +23,15 @@ namespace SensorApp
     public partial class DataListWindow : Window
     {
         public ICollectionView collectionView;
+        private ObservableCollection<SensorData> _dataCollection;
         string searchText;
 
         public DataListWindow(ObservableCollection<SensorData> oCollection)
         {
             InitializeComponent();
 
-            collectionView = CollectionViewSource.GetDefaultView(oCollection);
+            _dataCollection = oCollection;
+            collectionView = CollectionViewSource.GetDefaultView(_dataCollection);
             DataListView.ItemsSource = collectionView;
         }
 
@@ -51,7 +53,7 @@ namespace SensorApp
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             searchText = TextBoxSearchBar.Text;
-            if(searchText != null)
+            if(searchText != "Search here ...")
             {
                 if (collectionView == null)
                     return;
@@ -66,6 +68,12 @@ namespace SensorApp
                     }
                     return false;
                 };
+            }
+            else if (string.IsNullOrEmpty(searchText))
+            {
+                collectionView.Filter = null;
+                collectionView = CollectionViewSource.GetDefaultView(_dataCollection);
+                DataListView.ItemsSource = collectionView;
             }
             else
             {

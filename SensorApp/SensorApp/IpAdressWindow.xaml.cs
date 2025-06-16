@@ -24,13 +24,13 @@ namespace SensorApp
         public IpAdressWindow()
         {
             InitializeComponent();
-            //this.Closing += IpAdressWindow_Closing;
+            this.Closing += IpAdressWindow_Closing;
         }
 
-        //private void IpAdressWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-        //{
-        //    Application.Current.Shutdown();
-        //}
+        private void IpAdressWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
